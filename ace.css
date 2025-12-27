@@ -14,50 +14,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
-.login-wrapper {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.login-card {
-    background: #fff;
-    width: 100%;
-    max-width: 360px;
-    padding: 25px;
-    border-radius: 10px;
-    text-align: center;
-}
-.login-card input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 12px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.login-card button {
-    width: 100%;
-    padding: 12px;
-    background: # 8b5a2b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
-
-@media (max-width: 480px) {
-    .login-card {
-        padding: 20px;
-    }
-
-    .login-card h2 {
-        font-size: 18px;
-    }
-}
-
 img {
     width: 7.5%;
     padding-top: 0px;
@@ -125,4 +81,5 @@ hr {
     cursor: pointer;
     margin-bottom: 10px;
 }
+
 
