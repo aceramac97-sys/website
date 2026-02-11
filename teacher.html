@@ -550,6 +550,53 @@
     <button id="music-btn">🎵</button>
 
     <script>
+        // Cute Valentine Melody Generator
+let audioContext;
+let isPlaying = false;
+let musicInterval;
+
+function playCuteMusic() {
+    if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    const notes = [
+        523.25, // C5
+        659.25, // E5
+        783.99, // G5
+        659.25, // E5
+        698.46, // F5
+        783.99, // G5
+        880.00, // A5
+        783.99  // G5
+    ];
+
+    let index = 0;
+
+    musicInterval = setInterval(() => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.type = "sine"; // soft romantic sound
+        oscillator.frequency.setValueAtTime(notes[index], audioContext.currentTime);
+
+        gainNode.gain.setValueAtTime(0.15, audioContext.currentTime); // soft volume
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.8);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.8);
+
+        index = (index + 1) % notes.length;
+    }, 800);
+}
+
+function stopCuteMusic() {
+    clearInterval(musicInterval);
+}
+
         // Global Variables
         let currentLevel = 1;
         let wordleAttempts = 0;
@@ -558,7 +605,17 @@
         let keysFound = 0;
         const totalKeys = 3;
         let audioPlaying = false;
-        const audio = new Audio('https://www.soundjay.com/misc/sounds/bell-ringing-05.wav'); // Placeholder for romantic music
+document.getElementById('music-btn').addEventListener('click', () => {
+    if (!isPlaying) {
+        playCuteMusic();
+        isPlaying = true;
+        document.getElementById('music-btn').textContent = "🔇";
+    } else {
+        stopCuteMusic();
+        isPlaying = false;
+        document.getElementById('music-btn').textContent = "🎵";
+    }
+});
 
         // Balloon Messages
         const balloonMessages = [
